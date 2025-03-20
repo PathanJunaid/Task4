@@ -6,8 +6,8 @@ The Employee Leave Management System is a web application that allows employees 
 ## Project Structure
 This project is divided into two main parts:
 
-- **Frontend**: The frontend of the application is located in the `/frontend` directory. Read more about the frontend setup and instructions in [Frontend README](/frontend/readme.md).
-- **Backend**: The backend of the application is located in the `/backend` directory. Read more about the backend setup and instructions in [Backend README](/backend/readme.md).
+- **Frontend**: The frontend of the application is located in the `/frontend` directory. Read more about the frontend setup and instructions in [Frontend README](./frontend/readme.md).
+- **Backend**: The backend of the application is located in the `/backend` directory. Read more about the backend setup and instructions in [Backend README](./backend/readme.md).
 
 ## Getting Started
 To set up and run the application, follow the instructions provided in the respective frontend and backend README files.
