@@ -1,59 +1,159 @@
-# LeaveManagement
+Below is a sample `README.md` file tailored for the frontend of your Angular-based Leave Management System. It includes setup instructions, project structure, features, and other relevant details based on the work we’ve done so far.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+---
 
-## Development server
+# Leave Management System - Frontend
 
-To start a local development server, run:
+This is the frontend application for the Leave Management System, built with **Angular 17** and **Angular Material**. It provides a user-friendly interface for employees to apply for leaves and view their requests, while admins can manage leave requests, view analytics, and handle employee data.
 
-```bash
-ng serve
+## Table of Contents
+- [Features](#features)
+- [Technologies](#technologies)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Setup Instructions](#setup-instructions)
+- [Running the Application](#running-the-application)
+- [Available Routes](#available-routes)
+- [Authentication](#authentication)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
+## Features
+
+### For Employees
+- **Apply for Leave**: Submit leave requests with start/end dates, leave type, and reason.
+- **View Leave Requests**: See a list of personal leave requests with statuses (Pending, Approved, Rejected).
+- **Logout**: Securely log out of the system.
+
+### For Admins
+- **Admin Dashboard**:
+  - **Pending Leave Requests**: View and approve/reject pending requests with a filter (currently fixed to "Pending").
+  - **Analytics**:
+    - Top 10 employees taking frequent leaves.
+    - Top 5 employees with no paid leave remaining.
+    - Recent 5 employees added.
+  - **Employee Management**: View all employees’ leave balances and add new employees.
+- **Leave Balance**: View leave balances (available to admins only).
+- **Leave Requests**: View all leave requests (shared with employees but shows all for admins).
+
+### General
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices.
+- **Animations**: Smooth transitions using Angular animations.
+- **Error Handling**: User-friendly error messages with retry options.
+
+---
+
+## Technologies
+- **Angular**: v17 (standalone components)
+- **Angular Material**: For UI components (tables, forms, tabs, etc.)
+- **TypeScript**: For type-safe development
+- **RxJS**: For reactive programming and HTTP requests
+- **CSS/SCSS**: For styling with responsive design
+- **Local Storage**: For persisting user authentication state
+
+---
+
+## Project Structure
+```
+src/
+├── app/
+│   ├── core/
+│   │   ├── auth/                  # Authentication service and guards
+│   │   ├── services/              # API services (LeaveRequest, LeaveBalance, User)
+│   │   └── constants/             # API endpoints and constants
+│   ├── features/
+│   │   ├── auth/
+│   │   │   └── login/             # Login component
+│   │   ├── leave/
+│   │   │   ├── leave-application/ # Leave application component
+│   │   │   ├── leave-balance/     # Leave balance component
+│   │   │   └── leave-requests/    # Leave requests component
+│   │   └── admin/
+│   │       └── admin-dashboard/   # Admin dashboard component
+│   ├── app.component.ts           # Root component
+│   ├── app.routes.ts              # Application routes
+│   └── styles.scss                # Global styles
+├── environments/                  # Environment config (dev/prod)
+├── assets/                        # Static assets (images, etc.)
+├── index.html                     # Main HTML file
+└── main.ts                        # Bootstrap file
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Prerequisites
+- **Node.js**: v18.x or later
+- **npm**: v9.x or later (comes with Node.js)
+- **Angular CLI**: Install globally with `npm install -g @angular/cli@17`
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## Setup Instructions
+1. **Clone the Repository**:
+   ```bash
+   git clone <repository-url>
+   cd leave-management-frontend
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-```bash
-ng generate --help
-```
+3. **Configure Environment**:
+   - Open `src/environments/environment.ts` and update the `apiUrl` to match your backend API:
+     ```typescript
+     export const environment = {
+       production: false,
+       apiUrl: 'http://localhost:5000/api'
+     };
+     ```
+   - For production, update `environment.prod.ts` accordingly.
 
-## Building
+---
 
-To build the project run:
+## Running the Application
+1. **Development Mode**:
+   ```bash
+   ng serve --no-hmr
+   ```
+   - Open `http://localhost:4200` in your browser.
+   - `--no-hmr` disables Hot Module Replacement for stability during development.
 
-```bash
-ng build
-```
+2. **Production Build**:
+   ```bash
+   ng build --prod
+   ```
+   - Output is generated in the `dist/` folder.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## Available Routes
+| Route                  | Access         | Description                          |
+|------------------------|----------------|--------------------------------------|
+| `/login`              | Public         | Login page                          |
+| `/leave-application`  | Employees      | Apply for a leave                   |
+| `/leave-requests`     | All Users      | View personal (employees) or all (admins) leave requests |
+| `/leave-balance`      | Admins         | View leave balances                 |
+| `/admin/dashboard`    | Admins         | Admin dashboard with requests, analytics, and employee management |
+| `/**`                 | All Users      | Redirects to `/leave-requests` if logged in, else `/login` |
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## Authentication
+- **Login**: Uses email and password, stores JWT and user data (including role) in `localStorage`.
+- **Role-Based Access**:
+  - **Admin**: Identified by `role: 'Admin'` (mapped from backend `role: 0`).
+  - **Employee**: Identified by `role: 'User'` (mapped from backend `role: 1`).
+- **Persistence**: User state is restored from `localStorage` on page refresh via `AuthService`.
+- **Guards**:
+  - `authGuard`: Ensures users are logged in and restricts admin routes to admins only.
+  - `loggedInGuard`: Prevents logged-in users from accessing `/login`.
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
