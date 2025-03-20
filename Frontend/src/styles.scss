@@ -1,0 +1,45 @@
+// // Try this import instead
+// @import '~@angular/material/theming';
+
+// // Define palettes
+// $primary: mat-palette($mat-indigo);
+// $accent: mat-palette($mat-pink, A200, A100, A400);
+// $warn: mat-palette($mat-red);
+
+// // Create the theme
+// $theme: mat-light-theme((color: (primary: $primary,
+//         accent: $accent,
+//         warn: $warn )));
+
+// // Apply the theme
+// @include angular-material-theme($theme);
+
+// Global styles
+html,
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+button.mat-raised-button {
+  border-radius: 25px;
+  padding: 0 20px;
+}
+
+// Custom snackbar styles
+.success-snackbar {
+  background-color: #4caf50;
+  color: white;
+  .mat-snack-bar-action {
+    color: white;
+  }
+}
+
+.error-snackbar {
+  background-color: #f44336;
+  color: white;
+  .mat-snack-bar-action {
+    color: white;
+  }
+}

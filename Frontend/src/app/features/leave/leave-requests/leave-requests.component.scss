@@ -1,0 +1,154 @@
+.requests-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 87vh;
+    // width: 100%;
+}
+
+.requests-card {
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+
+    mat-card-title {
+        font-size: 24px;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center; // Center title on small screens
+    }
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto; // Enable horizontal scrolling on small screens
+}
+
+table {
+    width: 100%;
+    background: transparent;
+    min-width: 600px; // Minimum width to trigger scrolling on small screens
+
+    th {
+        font-weight: 600;
+        color: #333;
+        padding: 10px;
+    }
+
+    td {
+        color: #555;
+        padding: 10px;
+    }
+}
+
+.loading,
+.no-data,
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.no-data {
+    color: #666;
+    text-align: center;
+
+    p {
+        font-size: 16px;
+        margin: 0;
+    }
+}
+
+.error-container {
+    flex-direction: column;
+    background: rgba(244, 67, 54, 0.1);
+    border-radius: 10px;
+    margin-top: 20px;
+
+    .error-content {
+        text-align: center;
+
+        p {
+            color: #555;
+            font-size: 16px;
+            margin: 0 0 15px 0;
+        }
+
+        button {
+            border-radius: 20px;
+            padding: 8px 20px;
+        }
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .requests-card {
+        padding: 15px;
+        max-width: 100%; // Full width on tablets
+    }
+
+    mat-card-title {
+        font-size: 20px; // Smaller title on tablets
+    }
+
+    .table-wrapper {
+        padding-bottom: 10px; // Space for scrollbar
+    }
+
+    table {
+        font-size: 14px; // Smaller text for better fit
+    }
+
+    .loading mat-spinner {
+        diameter: 30px; // Smaller spinner
+    }
+
+    .no-data p,
+    .error-container .error-content p {
+        font-size: 14px; // Smaller text
+    }
+
+    .error-container .error-content button {
+        padding: 6px 15px; // Smaller button
+    }
+}
+
+@media (max-width: 480px) {
+    .requests-card {
+        padding: 10px;
+    }
+
+    mat-card-title {
+        font-size: 18px; // Even smaller title on mobile
+    }
+
+    table {
+        font-size: 12px; // Tiny text for mobile
+    }
+
+    .loading mat-spinner {
+        diameter: 25px; // Tiny spinner
+    }
+
+    .no-data p,
+    .error-container .error-content p {
+        font-size: 12px; // Tiny text
+    }
+
+    .error-container {
+        margin-top: 15px;
+        padding: 15px;
+
+        .error-content button {
+            padding: 5px 10px; // Tiny button
+        }
+    }
+}

@@ -1,0 +1,77 @@
+<div class="analytics-container">
+    <!-- Top 10 Frequent Leave Takers -->
+    <mat-card class="analytics-card" appearance="outlined">
+        <mat-card-header>
+            <mat-card-title>Top 10 Frequent Leave Takers</mat-card-title>
+            <mat-card-subtitle>Employees with the most leaves taken</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <table mat-table [dataSource]="top10LeaveTakers" class="full-width">
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Name</th>
+                    <td mat-cell *matCellDef="let emp">{{ emp.employeeName }}</td>
+                </ng-container>
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef>Email</th>
+                    <td mat-cell *matCellDef="let emp">{{ emp.employeeEmail }}</td>
+                </ng-container>
+                <ng-container matColumnDef="leaveCount">
+                    <th mat-header-cell *matHeaderCellDef>Leave Count</th>
+                    <td mat-cell *matCellDef="let emp">{{ emp.leaveCount }}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="leaveTakersColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: leaveTakersColumns;" class="analytics-row"></tr>
+            </table>
+            <div class="no-data" *ngIf="top10LeaveTakers.data.length === 0">No data available</div>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- Top 5 Employees Without Paid Leaves -->
+    <mat-card class="analytics-card" appearance="outlined">
+        <mat-card-header>
+            <mat-card-title>Top 5 Employees Without Paid Leaves</mat-card-title>
+            <mat-card-subtitle>Employees who haven't taken paid leaves</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <table mat-table [dataSource]="top5NoPaidLeaves" class="full-width">
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Name</th>
+                    <td mat-cell *matCellDef="let emp">{{ emp.employeeName }}</td>
+                </ng-container>
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef>Email</th>
+                    <td mat-cell *matCellDef="let emp">{{ emp.employeeEmail }}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="noPaidLeavesColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: noPaidLeavesColumns;" class="analytics-row"></tr>
+            </table>
+            <div class="no-data" *ngIf="top5NoPaidLeaves.data.length === 0">No data available</div>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- Recent 5 Employees -->
+    <mat-card class="analytics-card" appearance="outlined">
+        <mat-card-header>
+            <mat-card-title>Recent 5 Employees</mat-card-title>
+            <mat-card-subtitle>Most recently added employees</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <table mat-table [dataSource]="recent5Employees" class="full-width">
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Name</th>
+                    <td mat-cell *matCellDef="let emp">{{ emp.employeeName }}</td>
+                </ng-container>
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef>Email</th>
+                    <td mat-cell *matCellDef="let emp">{{ emp.employeeEmail }}</td>
+                </ng-container>
+                <ng-container matColumnDef="joinDate">
+                    <th mat-header-cell *matHeaderCellDef>Join Date</th>
+                    <td mat-cell *matCellDef="let emp">{{ emp.createdAt | date: 'mediumDate' }}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="recentEmployeesColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: recentEmployeesColumns;" class="analytics-row"></tr>
+            </table>
+            <div class="no-data" *ngIf="recent5Employees.data.length === 0">No data available</div>
+        </mat-card-content>
+    </mat-card>

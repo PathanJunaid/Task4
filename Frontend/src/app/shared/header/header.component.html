@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+    <span>Leave Management</span>
+    <span class="spacer"></span>
+
+    <!-- Desktop Navigation -->
+    <div class="desktop-nav" *ngIf="isLoggedIn">
+        <!-- Admin Navigation -->
+        <ng-container *ngIf="isAdmin">
+            <button mat-button routerLink="/admin/dashboard">Admin Dashboard</button>
+            <button mat-button routerLink="/leave-requests">Leave Requests</button>
+            <button mat-button routerLink="/register">Employees</button>
+            <button mat-button routerLink="/analytics">Analytics</button>
+            <button mat-button (click)="logout()">Logout</button>
+        </ng-container>
+        <!-- Employee Navigation -->
+        <ng-container *ngIf="!isAdmin">
+            <button mat-button routerLink="/leave-application">Apply Leave</button>
+            <button mat-button routerLink="/leave-requests">Leave Requests</button>
+            <button mat-button (click)="logout()">Logout</button>
+        </ng-container>
+    </div>
+
+    <!-- Mobile Menu -->
+    <button mat-icon-button class="mobile-menu-toggle" [matMenuTriggerFor]="menu" *ngIf="isLoggedIn">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <!-- Admin Mobile Menu -->
+        <ng-container *ngIf="isAdmin">
+            <button mat-menu-item routerLink="/admin/dashboard">Admin Dashboard</button>
+            <button mat-menu-item routerLink="/leave-requests">Leave Requests</button>
+            <button mat-menu-item routerLink="/register">Employees</button>
+            <button mat-menu-item routerLink="/analytics">Analytics</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+        </ng-container>
+        <!-- Employee Mobile Menu -->
+        <ng-container *ngIf="!isAdmin">
+            <button mat-menu-item routerLink="/leave-application">Apply Leave</button>
+            <button mat-menu-item routerLink="/leave-requests">Leave Requests</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+        </ng-container>
+    </mat-menu>
+</mat-toolbar>

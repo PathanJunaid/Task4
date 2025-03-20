@@ -1,0 +1,62 @@
+# Ignore Node.js dependencies
+frontend/node_modules/
+frontend/package-lock.json
+frontend/yarn.lock
+frontend/pnpm-lock.yaml
+
+# Ignore Angular build files
+frontend/dist/
+frontend/.angular/
+frontend/.cache/
+
+# Ignore Angular environment files
+frontend/src/environments/environment.ts
+frontend/src/environments/environment.prod.ts
+
+# Ignore TypeScript build artifacts
+frontend/*.tsbuildinfo
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
+*.log
+*.swp
+.DS_Store
+
+# -------------------------------
+# Backend (.NET) Ignored Files
+# -------------------------------
+
+# Ignore build and binary files
+backend/Backend/bin/
+backend/Backend/obj/
+backend/Backend/*.suo
+backend/Backend/*.user
+backend/Backend/*.dll
+backend/Backend/*.exe
+
+# Ignore NuGet packages
+backend/Backend/packages/
+backend/Backend/project.lock.json
+
+# Ignore Rider/Visual Studio files
+backend/Backend/.vs/
+backend/Backend/.vscode/
+backend/Backend/*.csproj.user
+
+# Ignore Logs and Temporary Files
+backend/Backend/logs/
+backend/Backend/temp/
+backend/Backend/*.tmp
+
+# -------------------------------
+# Global System Ignored Files
+# -------------------------------
+
+# macOS specific files
+.DS_Store
+._*
+
+# Windows specific files
+Thumbs.db
+desktop.ini

@@ -1,0 +1,39 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+mat-toolbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+}
+
+.desktop-nav button {
+    margin: 0 8px;
+}
+
+.mobile-menu-toggle {
+    display: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    mat-toolbar {
+        padding: 0 8px;
+    }
+
+    span {
+        font-size: 16px;
+    }
+}
